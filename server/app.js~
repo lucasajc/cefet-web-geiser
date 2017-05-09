@@ -12,8 +12,14 @@ var fs = require('fs');
 let jogadoresFile = 'server/data/jogadores.json';
 let jogosPorJogadorFile = 'server/data/jogosPorJogador.json';
 
-let jogadores = JSON.parse(fs.readFileSync(jogadoresFile, 'utf8'));
-let jogosPorJogador = JSON.parse(fs.readFileSync(jogosPorJogadorFile, 'utf8'));
+let jogadores;
+let jogosPorJogador;
+
+jogadores = JSON.parse(fs.readFileSync(jogadoresFile, 'utf8'));
+jogadores = JSON.parse(fs.readFileSync(jogosPorJogadorFile, 'utf8'));
+
+console.log(jogadores);
+console.log(jogosPorJogador);
 
 
 
