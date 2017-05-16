@@ -1,19 +1,20 @@
 var express = require('express'),
     app = express();
+	_ = require('underscore'),
 
 // carregar "banco de dados" (data/jogadores.json e data/jogosPorJogador.json)
 // você pode colocar o conteúdo dos arquivos json no objeto "db" logo abaixo
 // dica: 3-4 linhas de código (você deve usar o módulo de filesystem (fs))
-var db = {
-};
 
 var fs = require('fs');
 
 let jogadoresFile = 'server/data/jogadores.json';
 let jogosPorJogadorFile = 'server/data/jogosPorJogador.json';
 
-let jogadores = JSON.parse(fs.readFileSync(jogadoresFile, 'utf8'));
-let jogosPorJogador = JSON.parse(fs.readFileSync(jogosPorJogadorFile, 'utf8'));
+var db = {
+	jogadores: JSON.parse(fs.readFileSync(jogadoresFile)).players,
+	jogosPorJogador: JSON.parse(fs.readFileSync(jogosPorJogadorFile))
+};
 
 
 
@@ -30,7 +31,9 @@ app.set('views', 'server/views');
 //       os dados do arquivo data/jogadores.json
 
 app.get('/', function(request, response) {
-  response.render('index.hbs');
+  response.render('index', {
+		jogadores: db.jogadores
+	});
 });
 
 // EXERCÍCIO 3
@@ -38,6 +41,8 @@ app.get('/', function(request, response) {
 // jogador, usando os dados do banco de dados "data/jogadores.json" e
 // "data/jogosPorJogador.json", assim como alguns campos calculados
 // dica: o handler desta função pode chegar a ter umas 15 linhas de código
+
+
 
 
 // EXERCÍCIO 1
